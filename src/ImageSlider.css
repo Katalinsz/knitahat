@@ -1,0 +1,27 @@
+.slick-slide {
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; 
+}
+
+.slick-slide div {
+    border: 1px solid #ccc;
+    margin: 4px;
+}
+
+.slick-slide img {
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modelslist-row {
+    margin: 40px 40px 40px 30%; 
+}
+
+.slick-arrow {
+    background-color: #ccc;
+}
