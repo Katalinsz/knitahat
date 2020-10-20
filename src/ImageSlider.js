@@ -8,9 +8,8 @@ import './ImageSlider.css';
 
 class Model extends React.Component {
   render() {
-    const profile = this.props; 
     return (
-      <img src={profile.image_url} className="media" alt="..." onClick={() => this.props.onClick(profile.image_url)} />
+      <img src={this.props.image_url} className="media" alt="..." onClick={() => this.props.onClick(this.props.image_url)} />
         
     )
   }
