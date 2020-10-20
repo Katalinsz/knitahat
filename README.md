@@ -1,3 +1,10 @@
+
+This project helps you knit a hat. You can drag the sliders to choose the right yarn/fabrics tension that you will use for your knitting. 
+You can choose the right size of your hat and write in the length. 
+In the image slider you can click on different hat types and this will change the main image on the site. 
+Every change will update the description so that you can read the corresponding instructions with the right yarn and size. (Do not start to knit, the instructions are not properly written yet, but I hope you get the vision of this project)
+When you hover over the main image it will be changed to a knitted hat image, just for fun and to use the useRef. 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
