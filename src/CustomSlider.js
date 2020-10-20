@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function valuetext(value) {
-  return `Makso${value}Maskor`;
+  return `Maksor`;
 }
 
 export function StitchesTensionSlider(props) {
@@ -21,6 +21,7 @@ export function StitchesTensionSlider(props) {
   const [value, setValue] = React.useState([20, 23]);
 
   const handleChange = (event, newValue) => {
+    props.onStitchesSliderChange(newValue);
     setValue(newValue);
   };
 
@@ -31,8 +32,7 @@ export function StitchesTensionSlider(props) {
       </Typography>
       <Slider
         value={value}
-        onChange={handleChange}
-        valueLabelDisplay="auto"
+        onChange={ handleChange}
         aria-labelledby="range-slider"
         getAriaValueText={valuetext}
         valueLabelDisplay="on"
@@ -52,6 +52,8 @@ export function HatSizeSlider(props) {
   const [value, setValue] = React.useState([50]);
 
   const handleChange = (event, newValue) => {
+    console.log("setting value till omkrets", newValue);
+    props.onSizesSliderChange(newValue);
     setValue(newValue);
   };
 
@@ -60,7 +62,6 @@ export function HatSizeSlider(props) {
       <Slider
         value={value}
         onChange={handleChange}
-        valueLabelDisplay="auto"
         aria-labelledby="continuous-slider"
         getAriaValueText={valuetext}
         valueLabelDisplay="on"
