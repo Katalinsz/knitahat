@@ -35,6 +35,11 @@
   margin-left: 5%;
 }
 
+.media-body form {
+  text-align: left;
+  margin-top: 20px;
+}
+
 .media img {
   margin-right: 13%;
 }
@@ -50,4 +55,6 @@
 
 .pattern-description h2 {
   font-size: medium;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }

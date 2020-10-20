@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import ImageSlider from './ImageSlider';
@@ -15,13 +14,57 @@ const testData = [
   {name: "Mössa3", image_url: "images/hat1.png", description: "SantaHat"},
 ];
 
+class Form extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      hatLenght: '',
+    }
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+	onSubmit = (event, value) => {
+  	event.preventDefault();
+    this.props.onSubmit(this.state.hatLenght);
+    console.log("changed length: ", this.state.hatLenght, event, value);
+    this.setState({ hatLenght: '' });
+  };
+
+	render() {
+  	return (
+      <>
+    	<form onSubmit={this.onSubmit}>
+    	  <input 
+          type="text" 
+          pattern="[0-9]*"
+          value={this.state.hatLenght}
+          onChange={event => this.setState({ hatLenght: event.target.value })}
+          placeholder="15" 
+          
+        />
+        <button>Change Lenght</button>
+        <div>Ange eventuelt en egen längd (numeric value only)</div>
+      </form>
+      
+      </>
+    );
+  }
+}
+
 const ShowHat = props => {
   return (
     <div className="media">
       <img src={props.imageSelected.image_url} className="align-self-start mr-3" alt="Design your hat" />
       <div className="media-body">
-        <StitchesTensionSlider></StitchesTensionSlider>
-        <HatSizeSlider></HatSizeSlider>
+        <StitchesTensionSlider 
+          stitchesSliderValue = {props.stitchesSliderValue}
+          onStitchesSliderChange={props.onStitchesSliderChange}
+        ></StitchesTensionSlider>
+        <HatSizeSlider
+          sizesSliderValue = {props.sizesSliderValue}
+          onSizesSliderChange={props.onSizesSliderChange}  
+        ></HatSizeSlider>
+        <Form onSubmit={props.onSubmit}></Form>
        </div>
     </div>  
   )  
@@ -40,15 +83,38 @@ const ModelsList = props => {
 
 function App() {
   const [imageSelected, setImageSelected] = useState(testData[1]);
+  const [valueStitchesSlider, setValueStitchesSlider] = React.useState([20, 23]);
+  const [valueSizesSlider, setValueSizesSlider] = React.useState([50]);
+  
+  const onSubmit=(item) => {
+    console.log("onSubmitggggg", item); 
+  }
 
   const onHatClick = (item) => {
     console.log("clicked", item); 
     setImageSelected(item);
   }; 
 
+  const handleSizesSliderChange = (newValue) => {
+    console.log("changing value", newValue); 
+   // setValueSizesSlider(newValue);
+  };
+
+  const handleStitchesSliderChange = ( newValue) => {
+    console.log("changing value", newValue); 
+    setValueStitchesSlider(newValue);
+  };
+
   return (
     <div className="App">
-      <ShowHat imageSelected={imageSelected}/>
+      <ShowHat 
+        imageSelected = {imageSelected} 
+        onSubmit={onSubmit}
+        stitchesSliderValue = {valueStitchesSlider}
+        sizesSliderValue = {valueSizesSlider}
+        onStitchesSliderChange={handleStitchesSliderChange}
+        onSizesSliderChange={handleSizesSliderChange}  
+      />
       <ModelsList onClick={onHatClick}/>
       <PatternDescription item={imageSelected} tension={23} size={56} />
       
